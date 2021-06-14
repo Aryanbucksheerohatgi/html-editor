@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #code{
+            height:100vh;
+            width:50%;
+            border:3px solid black
+
+        }
+        #display{
+            height: 100vh;
+            width: 50%;
+          
+            position: absolute;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea id="code">
+        
+    </textarea>
+    <iframe src="" id="display"></iframe>
+    <script>
+        function sender()
+        {
+            var code = document.getElementById("code").value;
+            fetch("/code", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify({code})}).then(res=>{
+                return res.json();
+            }).then(resp=>{
+                document.getElementById("display").src ="/display/"+resp.link
+            })
+        }
+        setInterval(sender, 5000);
+    </script>
+</body>
+</html>
