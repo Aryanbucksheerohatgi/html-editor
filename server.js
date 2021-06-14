@@ -4,6 +4,7 @@ var app = express();
 var fs = require("fs")
 var randomString = require('randomstring')
 app.use(express.json())
+var PORT = process.env.PORT || 3000
 
 app.get("/",(req,res)=>{
     res.sendFile(__dirname+"/index.html")
@@ -45,7 +46,7 @@ app.post("/code",(req,res)=>{
 
 })
 
-app.listen(3000,(err)=>{
+app.listen(PORT,(err)=>{
 if(err){
     console.log(err)
   
